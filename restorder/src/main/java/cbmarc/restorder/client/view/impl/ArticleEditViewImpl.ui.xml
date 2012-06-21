@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:cbmarc.restorder.client.ui">
+	
+	<ui:style>
+    	.hidden { visibility:hidden;position:absolute; }
+		.image, .imageGallery img { cursor:pointer;margin-right:10px;max-width:70px;max-height:70px;border:1px solid #aaa;padding:10px; }
+  	</ui:style>
+	
+	<c:JQMPanel>
+	    
+	    	<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Edición</li>
+				<li>			
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Nombre:</label>
+						<g:TextBox ui:field="nameField"></g:TextBox>
+					</div>
+				</li>
+				<li>
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Descripcion:</label>
+						<g:TextBox ui:field="descriptionField"></g:TextBox>
+					</div>
+				</li>
+				<li>
+				    <div data-role="fieldcontain">
+				        <label class="ui-input-text">Folder:</label>
+				        <select ui:field="folderField" data-role="slider">
+				            <option value="0">No</option>
+							<option value="1">Yes</option>
+				        </select>
+				    </div>
+				</li>
+				<li>
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Imagen:</label>
+						<g:Image ui:field="imageField" styleName="{style.image}"/>
+					</div>
+					<c:JQMCollapsible ui:field="imageGallery" text="Galeria">
+					    <g:HTMLPanel ui:field="imageGalleryContent" styleName="{style.imageGallery}"></g:HTMLPanel>
+					</c:JQMCollapsible>
+				</li>
+				<li>
+					<div data-role="fieldcontain" style="text-align:right">
+					    <c:JQMButton ui:field="saveButton" dataicon="check" datainline="true">Aceptar</c:JQMButton>
+					</div>
+				</li>
+				
+			</ul>
+	    
+    </c:JQMPanel>
+    
+</ui:UiBinder> 

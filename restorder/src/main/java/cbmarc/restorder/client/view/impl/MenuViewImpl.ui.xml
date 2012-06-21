@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:cbmarc.restorder.client.ui">
+	
+	<c:JQMPanel>
+	    
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">Menu Principal</li>
+			<li><g:Anchor ui:field="menu1">Edit Productos</g:Anchor></li>
+			<li><g:Anchor ui:field="menu2">List Productos</g:Anchor></li>
+		</ul>
+		
+	</c:JQMPanel>
+	
+</ui:UiBinder> 

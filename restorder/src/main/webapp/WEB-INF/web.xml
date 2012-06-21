@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <!-- Add Support for Spring -->
+  <listener>
+	<listener-class>
+	  org.springframework.web.context.ContextLoaderListener
+	</listener-class>
+  </listener>
+
+  <!-- Servlets -->
+  
+  <!-- CRUD SERVICE -->
+  <servlet>
+    <servlet-name>crudService</servlet-name>
+    <servlet-class>cbmarc.restorder.server.CrudServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>crudService</servlet-name>
+    <url-pattern>/restorder/crud.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ARTICLE SERVICE -->
+  <servlet>
+    <servlet-name>articleService</servlet-name>
+    <servlet-class>cbmarc.restorder.server.ArticleServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>articleService</servlet-name>
+    <url-pattern>/restorder/article.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- IMAGE SERVICE -->
+  <servlet>
+    <servlet-name>imageService</servlet-name>
+    <servlet-class>cbmarc.restorder.server.ImageServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>imageService</servlet-name>
+    <url-pattern>/restorder/image.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

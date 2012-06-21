@@ -1,0 +1,31 @@
+/* Styles */
+
+/* docs site layout */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media all and (min-width: 650px){
+	
+	.content-secondary {
+		float: left;
+		width: 25%;
+	}
+	.content-primary {
+		float: right;
+		width: 65%;
+	}
+	
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media all and (min-width: 750px){
+}
+
+/* Desktops and laptops ----------- */
+@media all and (min-width: 1200px){
+	.content-secondary {
+		margin-left: 2%;
+	}
+	.content-primary {
+		margin-right: 2%;
+	}
+}
