@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class JQMList extends ComplexPanel implements InsertPanel {
 	
 	private HandlerManager manager = new HandlerManager(this);
+	private HandlerRegistration handlerRegistration;
 	
 	public JQMList() {		
 		setElement(Document.get().createULElement());
@@ -31,10 +32,20 @@ public class JQMList extends ComplexPanel implements InsertPanel {
 	}
 	
 	public HandlerRegistration addClickHandler(JQMListSplitEvent.Handler handler) {
-		return manager.addHandler(JQMListSplitEvent.getType(), handler);
+		handlerRegistration = manager.addHandler(JQMListSplitEvent.getType(), handler);
+		return handlerRegistration;
 		
-	} 
+	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onDetach()
+	 */
+	@Override
+	protected void onDetach() {
+		super.onDetach();
+		handlerRegistration.removeHandler();
+	}
+
 	public void add(JQMListItem child) {
 		child.setList(this);
 		add(child, getElement());

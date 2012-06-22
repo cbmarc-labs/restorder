@@ -10,7 +10,6 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.IsEditor;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.editor.ui.client.adapters.ValueBoxEditor;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 /**
@@ -40,6 +39,5 @@ public interface ArticleEditView extends IsView, Editor<Article> {
 	
 	public interface Presenter {
 		void doSave();
-		void goTo(Place place);
 	}
 }

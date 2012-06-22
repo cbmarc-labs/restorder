@@ -15,6 +15,21 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
   <!-- Other module inherits                                      -->
+  
+  <!-- LOGGING -->
+  <inherits name="com.google.gwt.logging.Logging"/>
+  <!-- Disable the firebug handler as an example -->
+  <set-property name="gwt.logging.firebugHandler" value="DISABLED" />
+  <!-- Enable the simple remote handler -->
+  <!-- <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" /> -->
+  <!-- Try uncommenting some of the following to configure logging further -->
+  <set-property name="gwt.logging.enabled" value="TRUE"/>
+  <!-- ALL, FINEST, FINER, FINE, CONFIG, INFO, WARNING, SEVERE -->
+  <set-property name="gwt.logging.logLevel" value="ALL"/>
+  <set-property name="gwt.logging.consoleHandler" value="DISABLED" />
+  <set-property name="gwt.logging.developmentModeHandler" value="DISABLED" />
+  <set-property name="gwt.logging.popupHandler" value="DISABLED" />
+  <set-property name="gwt.logging.systemHandler" value="DISABLED" />
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='cbmarc.restorder.client.Restorder' />

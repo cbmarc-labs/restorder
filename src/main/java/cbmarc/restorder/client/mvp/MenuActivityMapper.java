@@ -28,6 +28,6 @@ public class MenuActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 		return menuActivityProvider.get();
-	}
+	}	
 
 }

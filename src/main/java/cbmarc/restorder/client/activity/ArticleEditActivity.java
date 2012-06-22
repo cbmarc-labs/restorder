@@ -6,6 +6,7 @@ package cbmarc.restorder.client.activity;
 import java.util.List;
 
 import cbmarc.restorder.client.event.JQMCollapsibleEvent;
+import cbmarc.restorder.client.place.ArticleEditPlace;
 import cbmarc.restorder.client.rpc.AppAsyncCallback;
 import cbmarc.restorder.client.rpc.CrudService;
 import cbmarc.restorder.client.rpc.CrudServiceAsync;
@@ -14,6 +15,7 @@ import cbmarc.restorder.client.rpc.ImageServiceAsync;
 import cbmarc.restorder.client.utils.JQMUtils;
 import cbmarc.restorder.client.view.ArticleEditView;
 import cbmarc.restorder.shared.model.Article;
+import cbmarc.restorder.shared.model.Model;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
@@ -21,8 +23,8 @@ import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
@@ -37,9 +39,9 @@ public class ArticleEditActivity extends AbstractActivity
 	
 	interface EditorDriver extends SimpleBeanEditorDriver<Article, ArticleEditView> {}
 
-	private final EditorDriver editorDriver;
+	private final EditorDriver editor;
 	private ArticleEditView view;
-	private PlaceController placeController;
+	private PlaceController place;
 	
 	private final CrudServiceAsync crudService = GWT.create(CrudService.class);
 	private final ImageServiceAsync imageService = GWT.create(ImageService.class);
@@ -47,14 +49,12 @@ public class ArticleEditActivity extends AbstractActivity
 	private Article article;
 	
 	@Inject
-	public ArticleEditActivity(ArticleEditView view, PlaceController placeController) {
-		super();
-		
+	public ArticleEditActivity(ArticleEditView view, PlaceController place) {
 		this.view = view;
-		this.placeController = placeController;
+		this.place = place;
 		
-		editorDriver = GWT.create(EditorDriver.class);
-		editorDriver.initialize(view);
+		editor = GWT.create(EditorDriver.class);
+		editor.initialize(view);
 		
 		view.setPresenter(this);
 		
@@ -106,22 +106,42 @@ public class ArticleEditActivity extends AbstractActivity
 	}
 
 	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		article = new Article();article.setImage("blank.jpg");
-		editorDriver.edit(article);
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {		
+		ArticleEditPlace editPlace = (ArticleEditPlace) place.getWhere();
+		
 		panel.setWidget(view);
+		view.getCollapsible().collapse();
+		
+		if(editPlace.getToken().isEmpty()) {
+			article = new Article();
+			article.setImage("blank.jpg");
+			
+			editor.edit(article);
+		} else {
+			doLoad(editPlace.getToken());
+		}
 		
 	}
-
-	@Override
-	public void goTo(Place place) {
-		placeController.goTo(place);
+	
+	public void doLoad(String token) {
+		long id = Long.parseLong(token);
 		
+		JQMUtils.showPageLoading();
+		crudService.get(id, Article.class.getName(), new AppAsyncCallback<Model>(){
+
+			@Override
+			public void onSuccess(Model result) {
+				article = (Article) result;
+				editor.edit(article);
+				
+				JQMUtils.hidePageLoading();
+				
+			}});
 	}
 
 	@Override
 	public void doSave() {
-		Article article = editorDriver.flush();
+		Article article = editor.flush();
 		crudService.saveOrUpdate(article, new AppAsyncCallback<Void>(){
 
 			@Override

@@ -12,7 +12,7 @@ public class Restorder implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 		AppGinjector ginjector = GWT.create(AppGinjector.class);
-		RootPanel.get("start").add(ginjector.getMainView());
+		RootPanel.get("main").add(ginjector.getMainView());
 		
 		ginjector.getPlaceHistoryHandler().handleCurrentHistory();
 	  

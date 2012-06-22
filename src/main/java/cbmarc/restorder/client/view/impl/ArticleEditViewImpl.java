@@ -46,6 +46,8 @@ public class ArticleEditViewImpl extends Composite implements ArticleEditView {
 	@UiField JQMCollapsible imageGallery;
 	@UiField HTMLPanel imageGalleryContent;
 	
+	String imageSrc;
+	
 	LeafValueEditor<Boolean> folder = new LeafValueEditor<Boolean>() {
 
 		@Override
@@ -75,13 +77,14 @@ public class ArticleEditViewImpl extends Composite implements ArticleEditView {
 
 		@Override
 		public void setValue(String value) {
-			imageField.setUrl("img/" + value);
+			imageSrc = value;
+			imageField.setUrl("img/" + imageSrc);
 			
 		}
 
 		@Override
 		public String getValue() {
-			return "nasasdasdull";
+			return imageSrc;
 		}};
 	
 	private Presenter presenter;
@@ -137,10 +140,6 @@ public class ArticleEditViewImpl extends Composite implements ArticleEditView {
 	public LeafValueEditor<Boolean> getFolder() {
 		return folder;
 	}
-	
-	public void setFolder(Boolean b) {
-		
-	}
 
 	@Override
 	public void setPresenter(Presenter presenter) {
@@ -156,7 +155,8 @@ public class ArticleEditViewImpl extends Composite implements ArticleEditView {
 
 	@Override
 	public void setImageUrl(String img) {
-		imageField.setUrl("img/" + img);
+		imageSrc = img;
+		imageField.setUrl("img/" + imageSrc);
 		
 	}
 

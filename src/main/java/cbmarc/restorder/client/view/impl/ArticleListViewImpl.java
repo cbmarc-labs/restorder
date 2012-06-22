@@ -44,7 +44,7 @@ public class ArticleListViewImpl extends Composite implements ArticleListView {
 
 	@UiHandler("buttonNew")
 	void buttonNewHandleClick(ClickEvent e) {
-		presenter.goTo(new ArticleEditPlace());
+		presenter.goTo(new ArticleEditPlace(""));
 	}
 
 	@Override

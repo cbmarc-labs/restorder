@@ -24,7 +24,6 @@ public class MenuActivity extends AbstractActivity
 	
 	@Inject
 	public MenuActivity(MenuView view, PlaceController placeController) {
-		super();
 		this.view = view;
 		this.placeController = placeController;
 		view.setPresenter(this);

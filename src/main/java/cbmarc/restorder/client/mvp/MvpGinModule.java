@@ -25,7 +25,9 @@ public class MvpGinModule extends AbstractGinModule {
 	protected void configure() {
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(PlaceHistoryMapper.class).to(AppPlaceHistoryMapper.class).in(Singleton.class);
+		
 		bind(MainActivityMapper.class);
+		bind(MenuActivityMapper.class);
 		
 	}
 	

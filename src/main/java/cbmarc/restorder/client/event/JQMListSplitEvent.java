@@ -13,8 +13,8 @@ public class JQMListSplitEvent extends GwtEvent<JQMListSplitEvent.Handler> {
 	
 	public interface Handler extends EventHandler {
 		
-		public void onLeftClick(JQMListSplitEvent event, int index);
-		public void onRightClick(JQMListSplitEvent event, int index);
+		public void onLeftSideClick(JQMListSplitEvent event, int index);
+		public void onRightSideClick(JQMListSplitEvent event, int index);
 		
 	}
 	
@@ -49,10 +49,10 @@ public class JQMListSplitEvent extends GwtEvent<JQMListSplitEvent.Handler> {
 	protected void dispatch(Handler handler) {
 		switch(operation) {
 		case LEFT:
-			handler.onLeftClick(this, index);
+			handler.onLeftSideClick(this, index);
 			break;
 		case RIGHT:
-			handler.onRightClick(this, index);
+			handler.onRightSideClick(this, index);
 			break;
 		}
 	}

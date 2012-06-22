@@ -11,6 +11,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.InsertPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -25,7 +26,7 @@ public class JQMCollapsible extends ComplexPanel implements InsertPanel {
 	
 	private HandlerManager manager = new HandlerManager(this);
 	private Boolean triggered = false;
-	
+	private HandlerRegistration handlerRegistration;
 	private Element text;
 	
 	public @UiConstructor JQMCollapsible(String text) {
@@ -54,6 +55,15 @@ public class JQMCollapsible extends ComplexPanel implements InsertPanel {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onDetach()
+	 */
+	@Override
+	protected void onDetach() {
+		super.onDetach();
+		handlerRegistration.removeHandler();
+	}
+
 	private void onCollapse() {
 		manager.fireEvent(JQMCollapsibleEvent.collapse());
 		
@@ -85,7 +95,9 @@ public class JQMCollapsible extends ComplexPanel implements InsertPanel {
 	}-*/;
 
 	public HandlerRegistration addClickHandler(JQMCollapsibleEvent.Handler handler) {
-		return manager.addHandler(JQMCollapsibleEvent.getType(), handler);
+		handlerRegistration = manager.addHandler(JQMCollapsibleEvent.getType(), handler);
+		
+		return handlerRegistration;
 		
 	} 
 
