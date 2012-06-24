@@ -20,11 +20,15 @@ public class JQMPage extends HTMLPanel {
 		this("");
 	}
 	
-	public JQMPage(String html) {		
+	public JQMPage(String html) {
 		super(html);
 
 		getElement().setId(DOM.createUniqueId());
 		getElement().setAttribute("data-role", "page");
+	}
+	
+	public void setDatarole(String datarole) {
+		getElement().setAttribute("data-role", datarole);
 	}
 
 	/* (non-Javadoc)
@@ -34,6 +38,7 @@ public class JQMPage extends HTMLPanel {
 	protected void onAttach() {
 		super.onAttach();
 		JQMUtils.page(getElement().getId());
+		
 	}
 
 }

@@ -17,6 +17,11 @@ public interface ArticleListView extends IsView {
 	void setPresenter(Presenter presenter);
 	
 	public interface Presenter {
+		void onListLeftClick(int index);
+		void onListRightClick(int index);
+		
+		void doNew();
+		
 		void goTo(Place place);
 	}
 }

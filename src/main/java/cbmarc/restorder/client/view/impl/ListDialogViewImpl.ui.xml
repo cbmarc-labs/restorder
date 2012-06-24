@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:cbmarc.restorder.client.ui">
+	<ui:style> 
+	</ui:style>
+	<c:JQMPage datarole="dialog">
+	    
+		<div data-role="header" data-theme="d">
+			<h1>Options</h1>
+		</div>
+
+		<div data-role="content" data-theme="c">
+			<c:JQMButton ui:field="newFolderButton">New Folder</c:JQMButton>
+			<c:JQMButton ui:field="newArticleButton">New Article</c:JQMButton>
+			<c:JQMButton ui:field="cancelButton" datatheme="a">Cancel</c:JQMButton>    
+		</div>
+		
+	</c:JQMPage>
+</ui:UiBinder> 

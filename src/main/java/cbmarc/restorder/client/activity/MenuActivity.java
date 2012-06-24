@@ -26,6 +26,7 @@ public class MenuActivity extends AbstractActivity
 	public MenuActivity(MenuView view, PlaceController placeController) {
 		this.view = view;
 		this.placeController = placeController;
+		
 		view.setPresenter(this);
 		
 	}

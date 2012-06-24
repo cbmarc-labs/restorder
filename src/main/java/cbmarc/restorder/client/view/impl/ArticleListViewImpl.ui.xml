@@ -5,16 +5,6 @@
 	
     <c:JQMPanel>
         
-        <ul data-role="listview" data-inset="true">
-            
-            <li>
-        		<div>
-        			<c:JQMButton ui:field="buttonNew" dataicon="plus" datainline="true">Nuevo</c:JQMButton>
-        		</div>
-        	</li>
-        
-        </ul>
-        
         <c:JQMList ui:field="list"></c:JQMList>
         
 	</c:JQMPanel>

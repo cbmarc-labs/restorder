@@ -3,6 +3,7 @@ package cbmarc.restorder.client;
 import cbmarc.restorder.client.view.ArticleEditView;
 import cbmarc.restorder.client.view.ArticleListView;
 import cbmarc.restorder.client.view.MenuView;
+import cbmarc.restorder.client.view.impl.ListDialogViewImpl;
 import cbmarc.restorder.client.view.impl.MainViewImpl;
 
 import com.google.gwt.inject.client.GinModules;
@@ -20,5 +21,6 @@ public interface AppGinjector extends Ginjector {
 	MenuView getMenuView();
 	ArticleEditView getArticleEditView();
 	ArticleListView getArticleListView();
+	ListDialogViewImpl getListDialogView();
 
 }

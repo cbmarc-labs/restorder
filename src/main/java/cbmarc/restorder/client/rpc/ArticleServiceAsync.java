@@ -5,7 +5,6 @@ package cbmarc.restorder.client.rpc;
 
 import java.util.List;
 
-import cbmarc.restorder.shared.model.Article;
 import cbmarc.restorder.shared.model.Model;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -16,6 +15,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface ArticleServiceAsync extends CrudServiceAsync {
 	
-	void getAll(Article article, AsyncCallback<List<Model>> callback);
+	void getAll(Long id, AsyncCallback<List<Model>> callback);
 	
 }

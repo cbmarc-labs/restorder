@@ -10,6 +10,8 @@ import com.google.gwt.place.shared.Place;
  *
  */
 public interface MainView extends IsView {
+	
+	String getId();
 		
 	public interface Presenter {
 		void goTo(Place place);

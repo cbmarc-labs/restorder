@@ -36,15 +36,6 @@ public class JQMList extends ComplexPanel implements InsertPanel {
 		return handlerRegistration;
 		
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.Widget#onDetach()
-	 */
-	@Override
-	protected void onDetach() {
-		super.onDetach();
-		handlerRegistration.removeHandler();
-	}
 
 	public void add(JQMListItem child) {
 		child.setList(this);

@@ -42,6 +42,9 @@
   <stylesheet src='../js/jquery.mobile-1.1.0.min.css'/>
   <script src="../js/jquery.min.js"/>
   <script src="../js/jquery.mobile-1.1.0.min.js"/>
+  
+  <stylesheet src='../style.css'/>
+  <script src="../default.js"/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />

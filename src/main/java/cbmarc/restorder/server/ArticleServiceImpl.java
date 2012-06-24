@@ -19,16 +19,18 @@ public class ArticleServiceImpl
 	extends CrudServiceImpl implements ArticleService {
 	
 	@Override
-	public List<Model> getAll(Article article) throws Exception {
+	public List<Model> getAll(Long id) throws ServerException {
 		List<Model> list = null;
+		
+		String name = Article.class.getName();
 		
 		try {
 			String filter = "and parent=null";
-			if(article != null)
-				filter = "and parent=" + article.getId();
+			if(id != null)
+				filter = "and parent=" + id;
 			
-			list = dao.getAll(Article.class.getName(), "where folder=1 " + filter + " order by name");
-			list.addAll(dao.getAll(Article.class.getName(), "where folder=0 " + filter + " order by name"));
+			list = dao.getAll(name, "where folder=1 " + filter + " order by name");
+			list.addAll(dao.getAll(name, "where folder=0 " + filter + " order by name"));
 			
 			
 		} catch(Exception e) {

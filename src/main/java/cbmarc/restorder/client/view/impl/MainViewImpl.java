@@ -5,7 +5,7 @@ package cbmarc.restorder.client.view.impl;
 
 import cbmarc.restorder.client.mvp.MainActivityMapper;
 import cbmarc.restorder.client.mvp.MenuActivityMapper;
-import cbmarc.restorder.client.ui.JQMContent;
+import cbmarc.restorder.client.ui.JQMPage;
 import cbmarc.restorder.client.view.MainView;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -29,10 +29,10 @@ public class MainViewImpl extends Composite implements MainView {
 	private static MainViewImplUiBinder uiBinder = GWT
 			.create(MainViewImplUiBinder.class);
 
-	interface MainViewImplUiBinder extends UiBinder<Widget, MainViewImpl> {
-	}
+	interface MainViewImplUiBinder extends UiBinder<Widget, MainViewImpl> {}
 	
-	@UiField JQMContent main;
+	//@UiField JQMContent main;
+	@UiField JQMPage main;
 	@UiField SimplePanel primary;
 	@UiField SimplePanel secondary;
 	
@@ -46,6 +46,12 @@ public class MainViewImpl extends Composite implements MainView {
 	    
 	    ActivityManager mainActivityManager = new ActivityManager(mainActivityMapper, eventBus);
 	    mainActivityManager.setDisplay(primary);
+	}
+
+	@Override
+	public String getId() {
+		return getElement().getId();
+		
 	}
 
 }

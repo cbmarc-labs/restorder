@@ -38,6 +38,9 @@ public interface ArticleEditView extends IsView, Editor<Article> {
 	void setPresenter(Presenter presenter);
 	
 	public interface Presenter {
+		void onGalleryExpand();
+		void onGalleryCollapse();
+		
 		void doSave();
 	}
 }

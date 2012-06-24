@@ -1,5 +1,9 @@
 /* Styles */
 
+.ui-dialog  .ui-header .ui-btn-icon-notext { /* hide dialog close button */  
+	display: none;
+} 
+
 /* docs site layout */
 
 /* Smartphones (portrait and landscape) ----------- */

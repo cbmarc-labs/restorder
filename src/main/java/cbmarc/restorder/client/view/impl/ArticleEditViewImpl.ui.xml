@@ -11,20 +11,19 @@
 	<c:JQMPanel>
 	    
 	    	<ul data-role="listview" data-inset="true">
-				<li data-role="list-divider">Edición</li>
+				<li data-role="list-divider">Edition</li>
+				
 				<li>			
 					<div data-role="fieldcontain">
-						<label class="ui-input-text">Nombre:</label>
+						<label class="ui-input-text">Name:</label>
 						<g:TextBox ui:field="nameField"></g:TextBox>
 					</div>
-				</li>
-				<li>
+					
 					<div data-role="fieldcontain">
-						<label class="ui-input-text">Descripcion:</label>
+						<label class="ui-input-text">Description:</label>
 						<g:TextBox ui:field="descriptionField"></g:TextBox>
 					</div>
-				</li>
-				<li>
+					
 				    <div data-role="fieldcontain">
 				        <label class="ui-input-text">Folder:</label>
 				        <select ui:field="folderField" data-role="slider">
@@ -32,19 +31,29 @@
 							<option value="1">Yes</option>
 				        </select>
 				    </div>
-				</li>
-				<li>
+
 					<div data-role="fieldcontain">
-						<label class="ui-input-text">Imagen:</label>
+						<label class="ui-input-text">Image:</label>
 						<g:Image ui:field="imageField" styleName="{style.image}"/>
 					</div>
+					
 					<c:JQMCollapsible ui:field="imageGallery" text="Galeria">
-					    <g:HTMLPanel ui:field="imageGalleryContent" styleName="{style.imageGallery}"></g:HTMLPanel>
+					   	<g:HTMLPanel ui:field="imageGalleryContent" styleName="{style.imageGallery}"></g:HTMLPanel>
 					</c:JQMCollapsible>
 				</li>
+				
 				<li>
 					<div data-role="fieldcontain" style="text-align:right">
-					    <c:JQMButton ui:field="saveButton" dataicon="check" datainline="true">Aceptar</c:JQMButton>
+					    
+					    <c:JQMButton ui:field="deleteButton" dataiconpos="bottom" 
+					        dataicon="delete" datainline="true">Delete</c:JQMButton>
+					    
+					    <c:JQMButton ui:field="cancelButton" dataiconpos="bottom"
+					        dataicon="back" datainline="true">Cancel</c:JQMButton>
+					    
+					    <c:JQMButton ui:field="saveButton" dataiconpos="bottom" 
+					        dataicon="check" datatheme="b" datainline="true">Save</c:JQMButton>
+					    
 					</div>
 				</li>
 				

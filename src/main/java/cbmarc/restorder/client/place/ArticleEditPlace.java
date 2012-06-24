@@ -6,7 +6,6 @@ package cbmarc.restorder.client.place;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix;
-import com.google.inject.Singleton;
 
 /**
  * @author marc
@@ -17,7 +16,7 @@ public class ArticleEditPlace extends Place {
 	private final String token;
 	
 	public ArticleEditPlace(String token) {
-		this.token = token;
+		this.token = token==null?"":token;
 	}
 	
 	public String getToken() {

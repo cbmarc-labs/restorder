@@ -5,7 +5,6 @@ package cbmarc.restorder.client.activity;
 
 import java.util.List;
 
-import cbmarc.restorder.client.event.JQMCollapsibleEvent;
 import cbmarc.restorder.client.place.ArticleEditPlace;
 import cbmarc.restorder.client.rpc.AppAsyncCallback;
 import cbmarc.restorder.client.rpc.CrudService;
@@ -41,7 +40,7 @@ public class ArticleEditActivity extends AbstractActivity
 
 	private final EditorDriver editor;
 	private ArticleEditView view;
-	private PlaceController place;
+	private PlaceController placeController;
 	
 	private final CrudServiceAsync crudService = GWT.create(CrudService.class);
 	private final ImageServiceAsync imageService = GWT.create(ImageService.class);
@@ -49,41 +48,15 @@ public class ArticleEditActivity extends AbstractActivity
 	private Article article;
 	
 	@Inject
-	public ArticleEditActivity(ArticleEditView view, PlaceController place) {
+	public ArticleEditActivity(ArticleEditView view, PlaceController placeController) {
 		this.view = view;
-		this.place = place;
+		this.placeController = placeController;
 		
 		editor = GWT.create(EditorDriver.class);
 		editor.initialize(view);
 		
 		view.setPresenter(this);
 		
-		bind();
-		
-	}
-	
-	private void bind() {
-		view.getCollapsible().addClickHandler(new JQMCollapsibleEvent.Handler(){
-
-			@Override
-			public void onExpand(JQMCollapsibleEvent event) {
-				JQMUtils.showPageLoading();
-				imageService.getAll(new AppAsyncCallback<List<String>>(){
-
-					@Override
-					public void onSuccess(List<String> result) {
-						populateImageGallery(result);
-						JQMUtils.hidePageLoading();
-					}
-				});
-				
-			}
-
-			@Override
-			public void onCollapse(JQMCollapsibleEvent event) {
-				view.getCollapsibleContent().clear();
-				
-			}});
 	}
 	
 	private void populateImageGallery(List<String> result) {
@@ -104,30 +77,57 @@ public class ArticleEditActivity extends AbstractActivity
 			}
 		}
 	}
+	
+	Long getTokenId(int index) {
+		Long id = null;
+		
+		ArticleEditPlace listPlace = (ArticleEditPlace) placeController.getWhere();
+		
+		String[] ids = listPlace.getToken().split(",");
+		try {
+			id = Long.parseLong(ids[index]);
+		} catch(Exception e) {}
+		
+		return id;
+	}
 
 	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {		
-		ArticleEditPlace editPlace = (ArticleEditPlace) place.getWhere();
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		ArticleEditPlace listPlace = (ArticleEditPlace) placeController.getWhere();
+		String[] ids = listPlace.getToken().split(",", -1);
+		Long id = null;
+		
+		try {
+			id = Long.parseLong(ids[ids.length - 1]);
+		} catch(Exception e) {}
 		
 		panel.setWidget(view);
 		view.getCollapsible().collapse();
 		
-		if(editPlace.getToken().isEmpty()) {
+		if(id == null) {
 			article = new Article();
 			article.setImage("blank.jpg");
 			
+			try {
+				id = Long.parseLong(ids[ids.length - 2]);
+			} catch(Exception e) {}
+			
+			article.setParent(id);
+			
 			editor.edit(article);
+
 		} else {
-			doLoad(editPlace.getToken());
+			doLoad(id);
+			
 		}
 		
 	}
 	
-	public void doLoad(String token) {
-		long id = Long.parseLong(token);
-		
+	public void doLoad(Long id) {
 		JQMUtils.showPageLoading();
-		crudService.get(id, Article.class.getName(), new AppAsyncCallback<Model>(){
+		
+		crudService.get(id, Article.class.getName(), 
+				new AppAsyncCallback<Model>(){
 
 			@Override
 			public void onSuccess(Model result) {
@@ -149,6 +149,26 @@ public class ArticleEditActivity extends AbstractActivity
 				JQMUtils.popup("Elemento guardado.");
 				
 			}});
+		
+	}
+
+	@Override
+	public void onGalleryExpand() {
+		JQMUtils.showPageLoading();
+		imageService.getAll(new AppAsyncCallback<List<String>>(){
+
+			@Override
+			public void onSuccess(List<String> result) {
+				populateImageGallery(result);
+				JQMUtils.hidePageLoading();
+			}
+		});
+		
+	}
+
+	@Override
+	public void onGalleryCollapse() {
+		view.getCollapsibleContent().clear();
 		
 	}
 

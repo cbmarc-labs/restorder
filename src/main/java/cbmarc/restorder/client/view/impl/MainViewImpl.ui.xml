@@ -5,12 +5,16 @@
 	
 	<ui:style>
   	</ui:style>
-		
-	<c:JQMContent ui:field="main">
-	
+  	
+	<c:JQMPage ui:field="main">
+	    
+	    <div data-role="content">
+	        
 	        <g:SimplePanel ui:field="secondary" styleName="content-secondary"></g:SimplePanel>
 	        <g:SimplePanel ui:field="primary" styleName="content-primary"></g:SimplePanel>
-		
-	</c:JQMContent>
+	        
+	    </div>
+	        
+	</c:JQMPage>
 	
 </ui:UiBinder> 

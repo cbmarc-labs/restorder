@@ -3,7 +3,6 @@
  */
 package cbmarc.restorder.client.view.impl;
 
-import cbmarc.restorder.client.place.ArticleEditPlace;
 import cbmarc.restorder.client.place.ArticleListPlace;
 import cbmarc.restorder.client.view.MenuView;
 
@@ -12,7 +11,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -29,7 +27,6 @@ public class MenuViewImpl extends Composite implements MenuView {
 	interface MenuUiBinder extends UiBinder<Widget, MenuViewImpl> {}
 	
 	@UiField Anchor menu1;
-	@UiField Anchor menu2;
 	
 	private Presenter presenter;
 	
@@ -39,12 +36,7 @@ public class MenuViewImpl extends Composite implements MenuView {
 	
 	@UiHandler("menu1")
 	void handleClick(ClickEvent e) {
-		presenter.goTo(new ArticleEditPlace(""));
-	}
-
-	@UiHandler("menu2")
-	void menu2HandleClick(ClickEvent e) {
-		presenter.goTo(new ArticleListPlace());
+		presenter.goTo(new ArticleListPlace(null));
 	}
 	
 	@Override

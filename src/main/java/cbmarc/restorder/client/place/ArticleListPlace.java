@@ -13,6 +13,16 @@ import com.google.gwt.place.shared.Prefix;
  */
 public class ArticleListPlace extends Place {
 	
+	private final String token;
+	
+	public ArticleListPlace(String token) {
+		this.token = token==null?"":token;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+	
 	@Prefix("list")
 	public static class Tokenizer implements PlaceTokenizer<ArticleListPlace>
 	{
@@ -20,13 +30,13 @@ public class ArticleListPlace extends Place {
 		@Override
 		public String getToken(ArticleListPlace place)
 		{
-			return "";
+			return place.getToken();
 		}
 
 		@Override
 		public ArticleListPlace getPlace(String token)
 		{
-			return new ArticleListPlace();
+			return new ArticleListPlace(token);
 		}
 
 	}

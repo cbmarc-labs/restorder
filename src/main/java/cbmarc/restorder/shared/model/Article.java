@@ -5,6 +5,9 @@ package cbmarc.restorder.shared.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -19,12 +22,21 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "ARTICLE")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Article extends Node {
+public class Article implements Model {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
+	protected Long id;
+	
+	@Column(name = "NAME", nullable = false)
+	@Length(min=1, max=50)
+	protected String name;
 
 	@Column(name = "DESCRIPTION")
 	protected String description;
@@ -35,11 +47,38 @@ public class Article extends Node {
 	@Column(name = "IMAGE")
 	@Length(max=100)
 	protected String image;
+	
+	@Column(name = "PARENT")
+	protected Long parent;
 
 	public Article() {}
 	
-	public Article(String name) {
-		super(name);
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -82,6 +121,20 @@ public class Article extends Node {
 	 */
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public Long getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Long parent) {
+		this.parent = parent;
 	}
 
 	/**

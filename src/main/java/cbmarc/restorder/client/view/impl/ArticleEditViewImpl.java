@@ -3,6 +3,7 @@
  */
 package cbmarc.restorder.client.view.impl;
 
+import cbmarc.restorder.client.event.JQMCollapsibleEvent;
 import cbmarc.restorder.client.ui.JQMButton;
 import cbmarc.restorder.client.ui.JQMCollapsible;
 import cbmarc.restorder.client.view.ArticleEditView;
@@ -91,6 +92,20 @@ public class ArticleEditViewImpl extends Composite implements ArticleEditView {
 	
 	public ArticleEditViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		imageGallery.addClickHandler(new JQMCollapsibleEvent.Handler(){
+
+			@Override
+			public void onExpand(JQMCollapsibleEvent event) {
+				presenter.onGalleryExpand();
+				
+			}
+
+			@Override
+			public void onCollapse(JQMCollapsibleEvent event) {
+				presenter.onGalleryCollapse();
+				
+			}});
 	}
 	
 	@UiHandler("nameField")

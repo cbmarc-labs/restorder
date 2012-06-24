@@ -5,6 +5,7 @@ package cbmarc.restorder.client.view;
 
 import cbmarc.restorder.client.view.impl.ArticleEditViewImpl;
 import cbmarc.restorder.client.view.impl.ArticleListViewImpl;
+import cbmarc.restorder.client.view.impl.ListDialogViewImpl;
 import cbmarc.restorder.client.view.impl.MainViewImpl;
 import cbmarc.restorder.client.view.impl.MenuViewImpl;
 
@@ -22,6 +23,8 @@ public class ViewGinModule extends AbstractGinModule {
 		bind(ArticleEditView.class).to(ArticleEditViewImpl.class);
 		bind(ArticleListView.class).to(ArticleListViewImpl.class);
 		bind(MenuView.class).to(MenuViewImpl.class);
+		
+		bind(ListDialogViewImpl.class);
 	}
 
 }

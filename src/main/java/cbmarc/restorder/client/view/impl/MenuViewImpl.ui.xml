@@ -6,9 +6,8 @@
 	<c:JQMPanel>
 	    
 		<ul data-role="listview" data-inset="true">
-			<li data-role="list-divider">Menu Principal</li>
-			<li><g:Anchor ui:field="menu1">Edit Productos</g:Anchor></li>
-			<li><g:Anchor ui:field="menu2">List Productos</g:Anchor></li>
+			<li data-role="list-divider">Main Menu</li>
+			<li><g:Anchor ui:field="menu1">List Articles</g:Anchor></li>
 		</ul>
 		
 	</c:JQMPanel>
